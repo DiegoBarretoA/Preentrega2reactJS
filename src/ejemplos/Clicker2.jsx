@@ -29,6 +29,14 @@ export const Clicker2 = ( {init = 0, step = 1} ) => {
         }
     }, [])
     
+    // useEffect(() => {
+    //     console.log("actualizacion de saludar", saludar)
+
+    //     return () => {
+    //         console.log("limpieza de saludar", saludar)
+    //     }
+    // }, [saludar])
+
     useEffect(() => {
         localStorage.setItem('counter', counter)
     }, [counter])

@@ -1,31 +1,36 @@
 import Header from "./components/Header/Header"
 import ItemListContainer from "./components/ItemListContainer/ItemListContainer"
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Button } from "react-bootstrap"
-import MiContenedor from "./components/MiContenedor"
-import MiBoton from "./components/MiBoton/MiBoton"
-import { Clicker2 } from "./components/Clicker2"
-import { useEffect, useState } from "react"
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
+import Nosotros from "./components/Nosotros/Nosotros"
+import Contacto from "./components/Contacto/Contacto"
+import Error404 from "./components/Error404/Error404"
+import PokeApi from "./ejemplos/PokeApi/PokeApi"
+import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer"
 
 function App() {
 
-  const [mostrar, setMostrar] = useState(true)
-
-  const handleMostrar = () => {
-    setMostrar(!mostrar)
-  }
-
   return (
-    <div>
-      <Header />
 
-      <button onClick={handleMostrar}>Mostrar</button>
+    <BrowserRouter>
 
-      {
-        mostrar ? <Clicker2 /> : null
-      }
+        <Routes>
+          <Route path="/pokeapi" element={<Header variant/>}/>
+          <Route path="*" element={<Header />}/>
+        </Routes>
+     
+        <Routes>
+          <Route path="/" element={<ItemListContainer />} />
+          <Route path="/productos/:categoryId" element={<ItemListContainer />} />
+          <Route path="/detail/:itemId" element={<ItemDetailContainer />}/>
+          <Route path="/nosotros" element={<Nosotros />} />
+          <Route path="/contacto" element={<Contacto />} />
+          <Route path="/pokeapi" element={<PokeApi />} />
+          <Route path="*" element={ <Navigate to={"/"}/>}/>
+        </Routes>
 
-    </div>
+
+    </BrowserRouter>
    
   )
 }
